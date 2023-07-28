@@ -5,6 +5,7 @@
 
 #include <type_traits>
 #include <vector>
+#include <iterator>
 
 // And this is the "dataset to kd-tree" adaptor class:
 
