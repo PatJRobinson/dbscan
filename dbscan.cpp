@@ -1,7 +1,7 @@
 #include "dbscan.hpp"
 
 #include <cstddef>
-#include "nanoflann/nanoflann.hpp"
+#include "vendor/nanoflann/nanoflann.hpp"
 
 #include <type_traits>
 #include <vector>

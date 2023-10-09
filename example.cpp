@@ -194,20 +194,20 @@ std::vector<size_t> dbscan3d(const std::vector<float>& data, float eps, int min_
 
 
 
-int main(int argc, char** argv)
-{
-    auto epsilon  = 0.5f;
-    int min_pts  = 10;
+// int main(int argc, char** argv)
+// {
+//     auto epsilon  = 0.5f;
+//     int min_pts  = 10;
 
-    std::vector<float>values(100*3);
+//     std::vector<float>values(100*3);
 
-    {
-        float i = 0.f;
-        for (float & val : values)
-            val = i += 0.5f;
-    }
+//     {
+//         float i = 0.f;
+//         for (float & val : values)
+//             val = i += 0.5f;
+//     }
 
-    dbscan3d(values, epsilon, min_pts);
+//     dbscan3d(values, epsilon, min_pts);
 
-    return 0;
-}
+//     return 0;
+// }
