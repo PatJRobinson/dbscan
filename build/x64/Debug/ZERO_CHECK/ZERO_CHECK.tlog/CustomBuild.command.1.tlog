@@ -1,0 +1,10 @@
+^C:\SRC\CALYOSENSUSVULKAN\INCLUDE\DBSCAN\BUILD\CMAKEFILES\486AB36BC81200602B89342A1E69003A\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/src/calyosensusvulkan/include/dbscan -BC:/src/calyosensusvulkan/include/dbscan/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/src/calyosensusvulkan/include/dbscan/build/Project.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

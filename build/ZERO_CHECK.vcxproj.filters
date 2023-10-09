@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\src\calyosensusvulkan\include\dbscan\build\CMakeFiles\486ab36bc81200602b89342a1e69003a\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{1840E0E8-71A0-3C75-B808-C367E7D1DBBE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,14 +1,7 @@
-#include "dbscan.hpp"
-#include <iostream>
-#include <string>
-#include <system_error>
-#include <vector>
-#include <utility>
-#include <fstream>
-#include <charconv>
-#include <cassert>
-#include <tuple>
-#include <cstring>
+#pragma once
+
+#include "example.hpp"
+
 
 
 auto check_from_chars_error(std::errc err, const std::string_view& line, int line_counter)
@@ -33,100 +26,100 @@ auto check_from_chars_error(std::errc err, const std::string_view& line, int lin
 }
 
 
-auto read_pair(const std::string_view& line, int line_counter)
-{
-    auto res = std::pair<double, double>();
+// auto read_pair(const std::string_view& line, int line_counter)
+// {
+//     auto res = std::pair<double, double>();
 
-    auto [ptr1, ec1] = std::from_chars(&line[0], &line[line.size()], res.first);
-    // make sure there is space between the numbers
-    ec1 = (ptr1 == &line[line.size()] || *ptr1 != ',')? std::errc::invalid_argument: ec1;
-    ptr1++;
-    check_from_chars_error(ec1, line, line_counter);
-
-
-    auto [ptr2, ec2] = std::from_chars(ptr1, &line[line.size()], res.second);
-    check_from_chars_error(ec2, line, line_counter);
-
-    return res;
-}
+//     auto [ptr1, ec1] = std::from_chars(&line[0], &line[line.size()], res.first);
+//     // make sure there is space between the numbers
+//     ec1 = (ptr1 == &line[line.size()] || *ptr1 != ',')? std::errc::invalid_argument: ec1;
+//     ptr1++;
+//     check_from_chars_error(ec1, line, line_counter);
 
 
-auto push_values(std::vector<float>& store, const std::string_view& line, int line_counter)
-{
-    auto ptr = line.data();
-    auto ec  = std::errc();
-    auto n_pushed = 0;
+//     auto [ptr2, ec2] = std::from_chars(ptr1, &line[line.size()], res.second);
+//     check_from_chars_error(ec2, line, line_counter);
 
-    do
-    {
-        float value;
-        auto [p, ec] =  std::from_chars(ptr, &line[line.size()-1], value);
-        ptr = p + 1;
-        check_from_chars_error(ec, line, line_counter);
-        n_pushed++;
-        store.push_back(value);
-
-    }while(ptr < line.data() + line.size());
-
-    return n_pushed;
-}
+//     return res;
+// }
 
 
+// auto push_values(std::vector<float>& store, const std::string_view& line, int line_counter)
+// {
+//     auto ptr = line.data();
+//     auto ec  = std::errc();
+//     auto n_pushed = 0;
 
-auto read_values(const std::string& filename)
-{
-    std::ifstream file(filename);
+//     do
+//     {
+//         float value;
+//         auto [p, ec] =  std::from_chars(ptr, &line[line.size()-1], value);
+//         ptr = p + 1;
+//         check_from_chars_error(ec, line, line_counter);
+//         n_pushed++;
+//         store.push_back(value);
 
-    if(not file.good())
-    {
-        std::perror(filename.c_str());
-        std::exit(2);
-    }
+//     }while(ptr < line.data() + line.size());
 
-    auto count = 0;
-
-    auto points = std::vector<float>();
-    auto dim    = 0;
-
-    while(not file.eof())
-    {
-        count++;
-        auto line = std::string();
-        std::getline(file, line);
-
-        if(not line.empty())
-        {
-            auto n_pushed = push_values(points, line, count);
-
-            if(count != 1)
-            {
-                if(n_pushed != dim)
-                {
-                    std::cerr << "Inconsistent number of dimensions at line '" << count << "'\n";
-                    std::exit(1);
-                }
-            }
-            dim = n_pushed;
-        }
-    }
-
-    return std::tuple(points, dim);
-}
+//     return n_pushed;
+// }
 
 
-template<typename T>
-auto to_num(const std::string& str)
-{
-    T value = 0;
-    auto [ptr, ec] = std::from_chars(str.data(), str.data() + str.size(), value);
 
-    if(ec != std::errc())
-    {
-        std::cerr << "Error converting value '" << str << "'\n";
-        std::exit(1);
-    }
-    return value;
-}
+// auto read_values(const std::string& filename)
+// {
+//     std::ifstream file(filename);
+
+//     if(not file.good())
+//     {
+//         std::perror(filename.c_str());
+//         std::exit(2);
+//     }
+
+//     auto count = 0;
+
+//     auto points = std::vector<float>();
+//     auto dim    = 0;
+
+//     while(not file.eof())
+//     {
+//         count++;
+//         auto line = std::string();
+//         std::getline(file, line);
+
+//         if(not line.empty())
+//         {
+//             auto n_pushed = push_values(points, line, count);
+
+//             if(count != 1)
+//             {
+//                 if(n_pushed != dim)
+//                 {
+//                     std::cerr << "Inconsistent number of dimensions at line '" << count << "'\n";
+//                     std::exit(1);
+//                 }
+//             }
+//             dim = n_pushed;
+//         }
+//     }
+
+//     return std::tuple(points, dim);
+// }
+
+
+// template<typename T>
+// auto to_num(const std::string& str)
+// {
+//     T value = 0;
+//     auto [ptr, ec] = std::from_chars(str.data(), str.data() + str.size(), value);
+
+//     if(ec != std::errc())
+//     {
+//         std::cerr << "Error converting value '" << str << "'\n";
+//         std::exit(1);
+//     }
+//     return value;
+// }
 
 
 // noise will be labelled as 0
@@ -146,7 +139,7 @@ auto flatten(const std::vector<std::vector<size_t>>& clusters, size_t n)
 }
 
 
-auto run_dbscan(int dim, const std::span<const point2>& data, float eps, int min_pts)
+auto run_dbscan(int dim, const std::vector<point2>& data, float eps, int min_pts)
 {
     assert(data.size() % dim == 0);
     assert(dim == 2 or dim == 3);
@@ -167,7 +160,7 @@ auto run_dbscan(int dim, const std::span<const point2>& data, float eps, int min
 }
 
 
-auto dbscan2d(const std::span<const float>& data, float eps, int min_pts)
+auto dbscan2d(const std::vector<float>& data, float eps, int min_pts)
 {
     auto points = std::vector<point2>(data.size() / 2);
 
@@ -183,7 +176,7 @@ auto dbscan2d(const std::span<const float>& data, float eps, int min_pts)
 }
 
 
-auto dbscan3d(const std::span<const float>& data, float eps, int min_pts)
+std::vector<size_t> dbscan3d(const std::vector<float>& data, float eps, int min_pts)
 {
     auto points = std::vector<point3>(data.size() / 3);
 

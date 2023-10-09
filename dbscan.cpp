@@ -1,7 +1,7 @@
 #include "dbscan.hpp"
 
 #include <cstddef>
-#include <nanoflann/nanoflann.hpp>
+#include "C:\src\calyosensusvulkan\include\dbscan\vendor\nanoflann\nanoflann.hpp"
 
 #include <type_traits>
 #include <vector>
@@ -27,8 +27,8 @@ inline auto get_pt(const point3& p, std::size_t dim)
 template<typename Point>
 struct adaptor
 {
-    const std::span<const Point>&  points;
-    adaptor(const std::span<const Point>&  points) : points(points) { }
+    const std::vector<Point>&  points;
+    adaptor(const std::vector<Point>&  points) : points(points) { }
 
     /// CRTP helper method
     //inline const Derived& derived() const { return obj; }
@@ -115,7 +115,7 @@ auto dbscan(const Adaptor& adapt, float eps, int min_pts)
 }
 
 
-auto dbscan(const std::span<const point2>& data, float eps, int min_pts) -> std::vector<std::vector<size_t>>
+auto dbscan(const std::vector<point2>& data, float eps, int min_pts) -> std::vector<std::vector<size_t>>
 {
     const auto adapt = adaptor<point2>(data);
 
@@ -123,7 +123,7 @@ auto dbscan(const std::span<const point2>& data, float eps, int min_pts) -> std:
 }
 
 
-auto dbscan(const std::span<const point3>& data, float eps, int min_pts) -> std::vector<std::vector<size_t>>
+auto dbscan(const std::vector<point3>& data, float eps, int min_pts) -> std::vector<std::vector<size_t>>
 {
     const auto adapt = adaptor<point3>(data);
 
