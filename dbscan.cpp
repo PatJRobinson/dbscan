@@ -1,7 +1,7 @@
 #include "dbscan.hpp"
 
 #include <cstddef>
-#include "C:\src\calyosensusvulkan\include\dbscan\vendor\nanoflann\nanoflann.hpp"
+#include "nanoflann/nanoflann.hpp"
 
 #include <type_traits>
 #include <vector>
@@ -74,7 +74,7 @@ auto dbscan(const Adaptor& adapt, float eps, int min_pts)
     using namespace nanoflann;
     using  my_kd_tree_t = KDTreeSingleIndexAdaptor<L2_Simple_Adaptor<float, decltype(adapt)>, decltype(adapt), n_cols>;
 
-    auto index = my_kd_tree_t(n_cols, adapt, KDTreeSingleIndexAdaptorParams(10));
+    my_kd_tree_t index(n_cols, adapt, KDTreeSingleIndexAdaptorParams(10));
     index.buildIndex();
 
     const auto n_points = adapt.kdtree_get_point_count();
@@ -91,7 +91,7 @@ auto dbscan(const Adaptor& adapt, float eps, int min_pts)
         if (matches.size() < static_cast<size_t>(min_pts)) continue;
         visited[i] = true;
 
-        auto cluster = std::vector({i});
+        auto cluster = std::vector<size_t>({i});
 
         while (matches.empty() == false)
         {

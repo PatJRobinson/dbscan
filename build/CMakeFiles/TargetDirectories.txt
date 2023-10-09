@@ -1,2 +1,3 @@
-C:/src/calyosensusvulkan/include/dbscan/build/CMakeFiles/ALL_BUILD.dir
-C:/src/calyosensusvulkan/include/dbscan/build/CMakeFiles/ZERO_CHECK.dir
+/home/ubuntu/src/PJ-DBScan/build/CMakeFiles/rebuild_cache.dir
+/home/ubuntu/src/PJ-DBScan/build/CMakeFiles/edit_cache.dir
+/home/ubuntu/src/PJ-DBScan/build/CMakeFiles/dbscan.dir

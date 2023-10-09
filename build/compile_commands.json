@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/ubuntu/src/PJ-DBScan/build",
+  "command": "/usr/bin/g++   -I/home/ubuntu/src/PJ-DBScan/vendor  -g   -o CMakeFiles/dbscan.dir/dbscan.cpp.o -c /home/ubuntu/src/PJ-DBScan/dbscan.cpp",
+  "file": "/home/ubuntu/src/PJ-DBScan/dbscan.cpp"
+},
+{
+  "directory": "/home/ubuntu/src/PJ-DBScan/build",
+  "command": "/usr/bin/g++   -I/home/ubuntu/src/PJ-DBScan/vendor  -g   -o CMakeFiles/dbscan.dir/example.cpp.o -c /home/ubuntu/src/PJ-DBScan/example.cpp",
+  "file": "/home/ubuntu/src/PJ-DBScan/example.cpp"
+}
+]

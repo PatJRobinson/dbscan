@@ -4,26 +4,26 @@
 
 
 
-auto check_from_chars_error(std::errc err, const std::string_view& line, int line_counter)
-{
-    if(err == std::errc())
-        return;
+// auto check_from_chars_error(std::errc err, const std::string_view& line, int line_counter)
+// {
+//     if(err == std::errc())
+//         return;
     
-    if(err == std::errc::invalid_argument)
-    {
-        std::cerr << "Error: Invalid value \"" << line
-            << "\" at line " << line_counter << "\n";
-        std::exit(1);
-    }
+//     if(err == std::errc::invalid_argument)
+//     {
+//         std::cerr << "Error: Invalid value \"" << line
+//             << "\" at line " << line_counter << "\n";
+//         std::exit(1);
+//     }
 
-    if(err == std::errc::result_out_of_range)
-    {
-        std::cerr << "Error: Value \"" << line << "\"out of range at line " 
-                  <<  line_counter << "\n";
-        std::exit(1);
-    }
+//     if(err == std::errc::result_out_of_range)
+//     {
+//         std::cerr << "Error: Value \"" << line << "\"out of range at line " 
+//                   <<  line_counter << "\n";
+//         std::exit(1);
+//     }
 
-}
+// }
 
 
 // auto read_pair(const std::string_view& line, int line_counter)
@@ -194,24 +194,20 @@ std::vector<size_t> dbscan3d(const std::vector<float>& data, float eps, int min_
 
 
 
-// int main(int argc, char** argv)
-// {
-//     if(argc != 4)
-//     {
-//         std::cerr << "usage: example <tsv file> <epsilon> <min points>\n";
-//         return 1;
-//     }
+int main(int argc, char** argv)
+{
+    auto epsilon  = 0.5f;
+    int min_pts  = 10;
 
-//     auto epsilon  = to_num<float>(argv[2]);
-//     auto min_pts  = to_num<int>  (argv[3]);
-//     auto [values, dim] = read_values(argv[1]);
+    std::vector<float>values(100*3);
 
-//     if(dim == 2)
-//     {
-//         dbscan2d(values, epsilon, min_pts);
-//     }
-//     else if (dim == 3)
-//     {
-//         dbscan3d(values, epsilon, min_pts);
-//     }
-// }
+    {
+        float i = 0.f;
+        for (float & val : values)
+            val = i += 0.5f;
+    }
+
+    dbscan3d(values, epsilon, min_pts);
+
+    return 0;
+}

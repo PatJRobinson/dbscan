@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ubuntu/src/PJ-DBScan/dbscan.hpp
+cassert
+-
+cstddef
+-
+vector
+-
+cstdlib
+-
+
+/home/ubuntu/src/PJ-DBScan/example.cpp
+example.hpp
+/home/ubuntu/src/PJ-DBScan/example.hpp
+
+/home/ubuntu/src/PJ-DBScan/example.hpp
+dbscan.hpp
+/home/ubuntu/src/PJ-DBScan/dbscan.hpp
+iostream
+-
+string
+-
+system_error
+-
+vector
+-
+utility
+-
+fstream
+-
+charconv
+-
+cassert
+-
+tuple
+-
+cstring
+-
+
