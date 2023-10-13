@@ -1,4 +1,4 @@
-#include "dbscan.hpp"
+#include "dbscan/dbscan.hpp"
 
 #include <cstddef>
 #include "vendor/nanoflann/nanoflann.hpp"

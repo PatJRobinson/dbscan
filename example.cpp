@@ -1,6 +1,6 @@
 #pragma once
 
-#include "example.hpp"
+#include "dbscan/example.hpp"
 
 
 
