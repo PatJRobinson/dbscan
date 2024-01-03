@@ -11,4 +11,4 @@
 #include <cstring>
 
 
-std::vector<size_t> dbscan3d(const std::vector<float>& data, float eps, int min_pts);
+std::vector<size_t> dbscan3d(const std::vector<float>& data, std::vector<size_t>& indicies, float eps, int min_pts);
