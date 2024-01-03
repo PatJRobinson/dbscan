@@ -115,6 +115,7 @@ auto dbscan(const Adaptor& adapt, const std::vector<size_t>& indicies, float eps
 }
 
 
+
 auto dbscan(const std::vector<point2>& data, const std::vector<size_t>& indicies, float eps, int min_pts) -> std::vector<std::vector<size_t>>
 {
     const auto adapt = adaptor<point2>(data);

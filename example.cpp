@@ -122,7 +122,7 @@
 // }
 
 
-// noise will be labelled as 0
+// // noise will be labelled as 0
 auto flatten(const std::vector<std::vector<size_t>>& clusters, size_t n)
 {
     auto flat_clusters = std::vector<size_t>(n);
@@ -139,59 +139,59 @@ auto flatten(const std::vector<std::vector<size_t>>& clusters, size_t n)
 }
 
 
-auto run_dbscan(int dim, const std::vector<point2>& data, float eps, int min_pts)
-{
-    assert(data.size() % dim == 0);
-    assert(dim == 2 or dim == 3);
+// auto run_dbscan(int dim, const std::vector<point2>& data, float eps, int min_pts)
+// {
+//     // assert(data.size() % dim == 0);
+//     // assert(dim == 2 or dim == 3);
 
-    if(dim == 2)
-    {
-        auto points = std::vector<point2>(data.size() / dim);
-        std::memcpy(points.data(), data.data(), sizeof(float) * data.size());
+//     // if(dim == 2)
+//     // {
+//     //     auto points = std::vector<point2>(data.size() / dim);
+//     //     std::memcpy(points.data(), data.data(), sizeof(float) * data.size());
 
-        return dbscan(data, eps, min_pts);
-    }
+//     //     return dbscan(data, eps, min_pts);
+//     // }
     
 
-    auto points = std::vector<point3>(data.size() / dim);
-    std::memcpy(points.data(), data.data(), sizeof(float) * data.size());
+//     // auto points = std::vector<point3>(data.size() / dim);
+//     // std::memcpy(points.data(), data.data(), sizeof(float) * data.size());
     
-    return dbscan(data, eps, min_pts);
-}
+//     // return dbscan(data, eps, min_pts);
+// }
 
 
-auto dbscan2d(const std::vector<float>& data, float eps, int min_pts)
-{
-    auto points = std::vector<point2>(data.size() / 2);
+// auto dbscan2d(const std::vector<float>& data, float eps, int min_pts)
+// {
+//     // auto points = std::vector<point2>(data.size() / 2);
 
-    std::memcpy(points.data(), data.data(), sizeof(float) * data.size());
+//     // std::memcpy(points.data(), data.data(), sizeof(float) * data.size());
 
-    auto clusters = dbscan(points, eps, min_pts);
-    auto flat     = flatten(clusters, points.size());
+//     // auto clusters = dbscan(points, eps, min_pts);
+//     // auto flat     = flatten(clusters, points.size());
 
-    for(size_t i = 0; i < points.size(); i++)
-    {
-        std::cout << points[i].x << ',' << points[i].y << ','  << flat[i] << '\n';
-    }
-}
+//     // for(size_t i = 0; i < points.size(); i++)
+//     // {
+//     //     std::cout << points[i].x << ',' << points[i].y << ','  << flat[i] << '\n';
+//     // }
+// }
 
 
-std::vector<size_t> dbscan3d(const std::vector<float>& data, float eps, int min_pts)
+std::vector<size_t> dbscan3d(const std::vector<float>& data, std::vector<size_t>& indicies, float eps, int min_pts)
 {
     auto points = std::vector<point3>(data.size() / 3);
 
     std::memcpy(points.data(), data.data(), sizeof(float) * data.size());
 
-    auto clusters = dbscan(points, eps, min_pts);
+    auto clusters = dbscan(points, indicies, eps, min_pts);
     auto flat     = flatten(clusters, points.size());
 
-    // for(size_t i = 0; i < points.size(); i++)
-    // {
-    //     std::cout << points[i].x << ',' << points[i].y << ',' << points[i].z << ',' << flat[i] << '\n';
-    // }
+    for(size_t i = 0; i < points.size(); i++)
+    {
+        std::cout << points[i].x << ',' << points[i].y << ',' << points[i].z << ',' << flat[i] << '\n';
+    }
     return flat;
 }
-
+// 
 
 
 // int main(int argc, char** argv)
