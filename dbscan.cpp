@@ -68,7 +68,7 @@ auto sort_clusters(std::vector<std::vector<size_t>>& clusters)
 
 
 template<int n_cols, typename Adaptor>
-auto dbscan(const Adaptor& adapt, float eps, int min_pts)
+auto dbscan(const Adaptor& adapt, const std::vector<size_t>& indicies, float eps, int min_pts)
 {
     eps *= eps;
     using namespace nanoflann;
@@ -85,11 +85,11 @@ auto dbscan(const Adaptor& adapt, float eps, int min_pts)
 
     for(size_t i = 0; i < n_points; i++)
     {
-        if (visited[i]) continue;
+        if (visited[indicies[i]]) continue;
 
-        index.radiusSearch(adapt.elem_ptr(i), eps, matches, SearchParams(32, 0.f, false));
+        index.radiusSearch(adapt.elem_ptr(indicies[i]), eps, matches, SearchParams(32, 0.f, false));
         if (matches.size() < static_cast<size_t>(min_pts)) continue;
-        visited[i] = true;
+        visited[indicies[i]] = true;
 
         auto cluster = std::vector<size_t>({i});
 
@@ -119,7 +119,7 @@ auto dbscan(const std::vector<point2>& data, const std::vector<size_t>& indicies
 {
     const auto adapt = adaptor<point2>(data);
 
-    return dbscan<2>(adapt, eps, min_pts);
+    return dbscan<2>(adapt, indicies, eps, min_pts);
 }
 
 
@@ -127,5 +127,5 @@ auto dbscan(const std::vector<point3>& data, const std::vector<size_t>& indicies
 {
     const auto adapt = adaptor<point3>(data);
 
-    return dbscan<3>(adapt, eps, min_pts);
+    return dbscan<3>(adapt, indicies, eps, min_pts);
 }
