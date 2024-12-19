@@ -160,24 +160,24 @@ auto dbscan3d(const std::span<const float>& data, float eps, int min_pts)
 
 
 
-int main(int argc, char** argv)
-{
-    if(argc != 4)
-    {
-        std::cerr << "usage: example <tsv file> <epsilon> <min points>\n";
-        return 1;
-    }
+// int main(int argc, char** argv)
+// {
+//     if(argc != 4)
+//     {
+//         std::cerr << "usage: example <tsv file> <epsilon> <min points>\n";
+//         return 1;
+//     }
 
-    auto epsilon  = to_num<float>(argv[2]);
-    auto min_pts  = to_num<int>  (argv[3]);
-    auto [values, dim] = read_values(argv[1]);
+//     auto epsilon  = to_num<float>(argv[2]);
+//     auto min_pts  = to_num<int>  (argv[3]);
+//     auto [values, dim] = read_values(argv[1]);
 
-    if(dim == 2)
-    {
-        dbscan2d(values, epsilon, min_pts);
-    }
-    else if (dim == 3)
-    {
-        dbscan3d(values, epsilon, min_pts);
-    }
-}
+//     if(dim == 2)
+//     {
+//         dbscan2d(values, epsilon, min_pts);
+//     }
+//     else if (dim == 3)
+//     {
+//         dbscan3d(values, epsilon, min_pts);
+//     }
+// }
