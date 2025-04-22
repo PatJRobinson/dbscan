@@ -1,3 +1,4 @@
+#define BUILDING_DBSCAN_DLL
 #include "dbscan/dbscan.hpp"
 
 #include <cstddef>
@@ -115,7 +116,7 @@ auto dbscan(const Adaptor& adapt, float eps, int min_pts)
 }
 
 
-auto dbscan(const std::vector<point2>& data, float eps, int min_pts) -> std::vector<std::vector<size_t>>
+DBSCAN_API auto dbscan(const std::vector<point2>& data, float eps, int min_pts) -> std::vector<std::vector<size_t>>
 {
     const auto adapt = adaptor<point2>(data);
 
@@ -123,7 +124,7 @@ auto dbscan(const std::vector<point2>& data, float eps, int min_pts) -> std::vec
 }
 
 
-auto dbscan(const std::vector<point3>& data, float eps, int min_pts) -> std::vector<std::vector<size_t>>
+DBSCAN_API auto dbscan(const std::vector<point3>& data, float eps, int min_pts) -> std::vector<std::vector<size_t>>
 {
     const auto adapt = adaptor<point3>(data);
 
