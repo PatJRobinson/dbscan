@@ -176,13 +176,13 @@ auto flatten(const std::vector<std::vector<size_t>>& clusters, size_t n)
 // }
 
 
-std::vector<size_t> dbscan3d(const std::vector<float>& data, std::vector<size_t>& indicies, float eps, int min_pts)
+std::vector<size_t> dbscan3d(const std::vector<float>& data, float eps, int min_pts)
 {
     auto points = std::vector<point3>(data.size() / 3);
 
     std::memcpy(points.data(), data.data(), sizeof(float) * data.size());
 
-    auto clusters = dbscan(points, indicies, eps, min_pts);
+    auto clusters = dbscan(points, eps, min_pts);
     auto flat     = flatten(clusters, points.size());
 
     for(size_t i = 0; i < points.size(); i++)
