@@ -1,3 +1,0 @@
-/home/ubuntu/src/PJ-DBScan/build/CMakeFiles/rebuild_cache.dir
-/home/ubuntu/src/PJ-DBScan/build/CMakeFiles/edit_cache.dir
-/home/ubuntu/src/PJ-DBScan/build/CMakeFiles/dbscan.dir
