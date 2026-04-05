@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.25.2)
+cmake_minimum_required(VERSION 3.24.3)
 
 project(dbscan VERSION 1.0.0 LANGUAGES CXX)
 
